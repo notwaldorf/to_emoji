@@ -11,7 +11,8 @@ stream.on('follow', function (event) {
   let source = event.source;
   let screenName = source.screen_name;
 
-  var welcome  = '👋 🆒 🐱! Tweet something at me and I\'ll traslate it to ✨🎉💰';
+  var welcome  =
+      '👋 🆒 🐱! Tweet something at me and I\'ll translate it back to ✨🎉💰';
 
   console.log('👋 ' + screenName);
 
