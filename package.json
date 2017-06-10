@@ -1,0 +1,23 @@
+{
+  "name": "to_emoji",
+  "version": "1.0.0",
+  "description": "Twitter bot that translates every tweet you send it to emoji",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/notwaldorf/to_emoji.git"
+  },
+  "author": "Monica Dinculescu <noms@google.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/notwaldorf/to_emoji/issues"
+  },
+  "homepage": "https://github.com/notwaldorf/to_emoji#readme",
+  "dependencies": {
+    "moji-translate": "^1.0.0",
+    "twit": "^2.2.5"
+  }
+}
