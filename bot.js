@@ -44,7 +44,7 @@ stream.on('tweet', function (message) {
   let nameID = message.id_str;
   let text = message.text;
 
-	if (message.in_reply_to_screen_name === 'to_emoji') {
+	if (message.in_reply_to_screen_name === 'to_emoji' || message.text.indexOf('@to_emoji') !== -1) {
     let translated = translate.translate(text, true);
   	console.log(screenName, text + " -> " + translated);
 
