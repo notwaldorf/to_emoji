@@ -24,6 +24,12 @@
     "node": "6.10.3"
   },
   "now": {
-    "alias": "to-emoji"
-  },
+    "alias": "to-emoji",
+    "env": {
+      "emoji_bot_consumer_key": "@emoji_bot_consumer_key",
+      "emoji_bot_consumer_secret": "@emoji_bot_consumer_secret",
+      "emoji_bot_access_token": "@emoji_bot_access_token",
+      "emoji_bot_access_secret": "@emoji_bot_access_secret"
+    }
+  }
 }

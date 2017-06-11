@@ -2,11 +2,6 @@ const translate = require('moji-translate');
 const Twit = require('twit');
 var config;
 
-var http       = require('http');
-http.createServer().listen(process.env.PORT || 5000, function() {
-  console.log('Started server' );
-});
-
 try {
   config = require('./.env');
 } catch (ex) {
@@ -14,10 +9,10 @@ try {
 }
 
 const T = new Twit({
-  consumer_key:        process.env.EMOJI_BOT_CONSUMER_KEY || config.consumer_key,
-  consumer_secret:     process.env.EMOJI_BOT_CONSUMER_SECRET || config.consumer_secret,
-  access_token:        process.env.EMOJI_BOT_ACCESS_TOKEN || config.access_token,
-  access_token_secret: process.env.EMOJI_BOT_ACCESS_SECRET || config.access_token_secret,
+  consumer_key:        process.env.emoji_bot_consumer_key || config.consumer_key,
+  consumer_secret:     process.env.emoji_bot_consumer_secret || config.consumer_secret,
+  access_token:        process.env.emoji_bot_access_token || config.access_token,
+  access_token_secret: process.env.emoji_bot_access_secret || config.access_token_secret,
   timeout_ms:          60*1000,  // optional HTTP request timeout to apply to all requests.
 });
 
