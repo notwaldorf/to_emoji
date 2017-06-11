@@ -50,7 +50,7 @@ stream.on('tweet', function (message) {
   }
 
   // If you were responded to, or mentioned.
-	if (message.in_reply_to_screen_name === 'to_emoji' || message.text.indexOf('@to_emoji') !== -1) {
+	if (message.in_reply_to_screen_name === 'to_emoji') {
     let translated = translate.translate(text, true);
     if (translated.trim() === '') {
       translated = '🤷‍♀️🤔';
