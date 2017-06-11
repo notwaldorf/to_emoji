@@ -4,7 +4,8 @@
   "description": "Twitter bot that translates every tweet you send it to emoji",
   "main": "bot.js",
   "scripts": {
-    "start": "node bot.js"
+    "start": "node bot.js",
+    "deploy": "now --public && now ln"
   },
   "repository": {
     "type": "git",
