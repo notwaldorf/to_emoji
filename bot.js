@@ -49,7 +49,8 @@ stream.on('tweet', function (message) {
     return;
   }
 
-  // If you were responded to, or mentioned.
+  // If you were directly responded to. Looking at mentions sent the bot in a loop
+  // and uhhhh let's not do that again.
 	if (message.in_reply_to_screen_name === 'to_emoji') {
     let translated = translate.translate(text, true);
     if (translated.trim() === '') {
