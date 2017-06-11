@@ -46,6 +46,7 @@ stream.on('tweet', function (message) {
 
   // OMG never reply to yourself.
   if (screenName === "to_emoji") {
+    console.log('choosing not to talk to myself', text)
     return;
   }
 
