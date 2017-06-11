@@ -1,6 +1,12 @@
 const translate = require('moji-translate');
 const Twit = require('twit');
-const config = require('./.env');
+var config;
+
+try {
+  config = require('./.env');
+} catch (ex) {
+  config = {}
+}
 
 const T = new Twit({
   consumer_key:        process.env.EMOJI_BOT_CONSUMER_KEY || config.consumer_key,
