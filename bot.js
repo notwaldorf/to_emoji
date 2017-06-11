@@ -46,7 +46,10 @@ stream.on('tweet', function (message) {
 
 	if (message.in_reply_to_screen_name === 'to_emoji' || message.text.indexOf('@to_emoji') !== -1) {
     let translated = translate.translate(text, true);
-  	console.log(screenName, text + " -> " + translated);
+    if (translated.trim() === '') {
+      translated = '🤷‍♀️🤔';
+    }
+    console.log(screenName, text + " -> " + translated);
 
 		T.post('statuses/update', { in_reply_to_status_id: nameID, status: '@' + screenName + ' ' + translated }, function(err, data, response) {
 			// console.log(data)
