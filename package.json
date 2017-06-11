@@ -19,5 +19,8 @@
   "dependencies": {
     "moji-translate": "^1.0.0",
     "twit": "^2.2.5"
+  },
+  "engines": {
+    "node": "6.10.3"
   }
 }
