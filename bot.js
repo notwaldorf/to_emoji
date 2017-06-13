@@ -2,6 +2,11 @@ const translate = require('moji-translate');
 const Twit = require('twit');
 var config;
 
+var http = require('http');
+  http.createServer().listen(process.env.PORT || 5000, function() {
+  console.log('🐳  Started server' );
+});
+
 try {
   config = require('./.env');
 } catch (ex) {
