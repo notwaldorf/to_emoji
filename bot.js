@@ -43,10 +43,10 @@ stream.on('tweet', function (message) {
 
     // Throttle. Maybe.
     let when = Math.floor(Math.random() * (15 - 3)) + 3;
-    console.log(`⏳  [${when}s]: @${screenName} ${text} -> ${translated}`);
+    console.log('⏳  ' + timestamp() + ` [${when}s]: @${screenName} ${text} -> ${translated}`);
 
     setTimeout(function() {
-      console.log('✅  ' + (new Date()).toLocaleTimeString() + ` @${screenName} ${translated}`);
+      console.log('✅  ' + timestamp() + ` @${screenName} ${translated}`);
       T.post('statuses/update', {
            in_reply_to_status_id: nameID, status: '@' + screenName + ' ' + translated
         }, function(err, data, response) {
@@ -57,3 +57,7 @@ stream.on('tweet', function (message) {
     }, when * 1000);
   }
 })
+
+function timestamp() {
+  return (new Date()).toLocaleTimeString();
+}
