@@ -5,7 +5,7 @@
   "main": "bot.js",
   "scripts": {
     "start": "node bot.js",
-    "deploy": "now --public && now ln"
+    "deploy": "now --public"
   },
   "repository": {
     "type": "git",
@@ -25,7 +25,6 @@
     "node": "6.10.3"
   },
   "now": {
-    "alias": "to-emoji",
     "env": {
       "emoji_bot_consumer_key": "@emoji_bot_consumer_key",
       "emoji_bot_consumer_secret": "@emoji_bot_consumer_secret",
