@@ -1,10 +1,10 @@
 const translate = require('moji-translate');
 
-tweetFromSomeone('one');
-tweetFromYourself('me');
-tweetFromSomeone('two');
-tweetFromSomeone('three');
-tweetFromSomeone('four');
+for (var i = 0; i < 24; i++) {
+  tweetFromSomeone('other' + i);
+  if (i % 4)
+    tweetFromYourself('me' + i);
+}
 
 
 function tweetFromSomeone(who) {
@@ -32,7 +32,7 @@ function onTweet(message) {
 
   // OMG never reply to yourself.
   if (screenName === "to_emoji") {
-    console.log('choosing not to talk to myself', text);
+    console.log('   choosing not to talk to myself', text);
     return;
   }
 
@@ -45,19 +45,11 @@ function onTweet(message) {
     }
 
     let when = Math.floor(Math.random() * (15 - 3)) + 3;
-    console.log(`[${when}s]: @${screenName} ${text} -> ${translated}`);
+    console.log(`⏳  [${when}s]: @${screenName} ${text} -> ${translated}`);
 
     // Set a delay between 5 to 10s.
     setTimeout(function() {
-      console.log('** tweeeted **' + (new Date()).toLocaleTimeString());
+      console.log('✅  ' + (new Date()).toLocaleTimeString() + ` @${screenName} ${translated}`);
     }, when * 1000);
-
-    // T.post('statuses/update', {
-    //      in_reply_to_status_id: nameID, status: '@' + screenName + ' ' + translated
-    //   }, function(err, data, response) {
-    //       if (err) {
-    //         console.log(err);
-    //       }
-    // })
   }
 }

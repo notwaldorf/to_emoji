@@ -21,23 +21,6 @@ const stream = T.stream('user');
 // Thanks to @ohhoe's https://github.com/rachelnicole/isReallyCute-bot for
 // all of the code samples <3
 
-// Send a welcome message to a follower.
-// stream.on('follow', function (event) {
-//   let source = event.source;
-//   let screenName = source.screen_name;
-//
-//   var welcome  =
-//       '👋 🆒 🐱! Tweet something at me and I\'ll translate it back to ✨🎉💰';
-//
-//   console.log('👋  ' + screenName);
-//
-//   T.post('statuses/update', {
-//       status: '@' + screenName + ' ' + welcome
-//     }, function(err, data, response) {
-//     // console.log(data);
-//   })
-// })
-
 // Translate a tweet.
 stream.on('tweet', function (message) {
   let screenName = message.user.screen_name;
@@ -46,7 +29,7 @@ stream.on('tweet', function (message) {
 
   // OMG never reply to yourself.
   if (screenName === "to_emoji") {
-    console.log('choosing not to talk to myself', text)
+    console.log('   choosing not to talk to myself', text);
     return;
   }
 
@@ -57,14 +40,20 @@ stream.on('tweet', function (message) {
     if (translated.trim() === '') {
       translated = '🤷‍♀️🤔';
     }
-    console.log(screenName, text + " -> " + translated);
 
-    T.post('statuses/update', {
-         in_reply_to_status_id: nameID, status: '@' + screenName + ' ' + translated
-      }, function(err, data, response) {
-          if (err) {
-            console.log(err);
-          }
-    })
+    // Throttle. Maybe.
+    let when = Math.floor(Math.random() * (15 - 3)) + 3;
+    console.log(`⏳  [${when}s]: @${screenName} ${text} -> ${translated}`);
+
+    setTimeout(function() {
+      console.log('✅  ' + (new Date()).toLocaleTimeString() + ` @${screenName} ${translated}`);
+      T.post('statuses/update', {
+           in_reply_to_status_id: nameID, status: '@' + screenName + ' ' + translated
+        }, function(err, data, response) {
+            if (err) {
+              console.log(err);
+            }
+      });
+    }, when * 1000);
   }
 })
