@@ -1,5 +1,6 @@
 const translate = require('moji-translate');
 const Twit = require('twit');
+const throttle = require('lodash.throttle');
 var config;
 
 try {
@@ -16,8 +17,22 @@ const T = new Twit({
   timeout_ms:          60*1000,  // optional HTTP request timeout to apply to all requests.
 });
 
+const throttleLimit = process.env.throttle_limit || config.throttle_limit; // In seconds;
+
 const stream = T.stream('user');
 
+let sendTweetThrottled = throttle((nameID, screenName, translated)=>{
+  T.post('statuses/update', {
+      in_reply_to_status_id: nameID, status: '@' + screenName + ' ' + translated
+  }, function(err, data, response) {
+      if (err) {
+        console.log(err);
+      }else{
+        console.log(new Date().toLocaleTimeString());
+      }
+  });
+}, throttleLimit * 1000);
+    
 // Thanks to @ohhoe's https://github.com/rachelnicole/isReallyCute-bot for
 // all of the code samples <3
 
@@ -40,20 +55,12 @@ stream.on('tweet', function (message) {
     if (translated.trim() === '') {
       translated = '🤷‍♀️🤔';
     }
+  
+    console.log(`⏳ @${screenName} ${text} -> ${translated}`);
 
-    // Throttle. Maybe.
-    let when = Math.floor(Math.random() * (15 - 3)) + 3;
-    console.log(`⏳  [${when}s]: @${screenName} ${text} -> ${translated}`);
+    console.log('✅  ' + (new Date()).toLocaleTimeString() + ` @${screenName} ${translated}`);
 
-    setTimeout(function() {
-      console.log('✅  ' + (new Date()).toLocaleTimeString() + ` @${screenName} ${translated}`);
-      T.post('statuses/update', {
-           in_reply_to_status_id: nameID, status: '@' + screenName + ' ' + translated
-        }, function(err, data, response) {
-            if (err) {
-              console.log(err);
-            }
-      });
-    }, when * 1000);
+    sendTweetThrottled(nameID, screenName, translated);
+    
   }
 })
