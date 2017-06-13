@@ -22,21 +22,21 @@ const stream = T.stream('user');
 // all of the code <3
 
 // Send a welcome message to a follower.
-stream.on('follow', function (event) {
-  let source = event.source;
-  let screenName = source.screen_name;
-
-  var welcome  =
-      '👋 🆒 🐱! Tweet something at me and I\'ll translate it back to ✨🎉💰';
-
-  console.log('👋  ' + screenName);
-
-  T.post('statuses/update', {
-      status: '@' + screenName + ' ' + welcome
-    }, function(err, data, response) {
-    // console.log(data);
-  })
-})
+// stream.on('follow', function (event) {
+//   let source = event.source;
+//   let screenName = source.screen_name;
+//
+//   var welcome  =
+//       '👋 🆒 🐱! Tweet something at me and I\'ll translate it back to ✨🎉💰';
+//
+//   console.log('👋  ' + screenName);
+//
+//   T.post('statuses/update', {
+//       status: '@' + screenName + ' ' + welcome
+//     }, function(err, data, response) {
+//     // console.log(data);
+//   })
+// })
 
 // Translate a tweet.
 stream.on('tweet', function (message) {
@@ -62,7 +62,7 @@ stream.on('tweet', function (message) {
 		T.post('statuses/update',
           { in_reply_to_status_id: nameID, status: '@' + screenName + ' ' + translated },
       function(err, data, response) {
-  			// console.log(data)
+  		  console.log(err, data)
   		})
 	}
 
