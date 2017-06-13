@@ -62,7 +62,9 @@ stream.on('tweet', function (message) {
     T.post('statuses/update', {
          in_reply_to_status_id: nameID, status: '@' + screenName + ' ' + translated
       }, function(err, data, response) {
-    	  console.log(err, data);
+          if (err) {
+            console.log(err);
+          }
     })
   }
 })
