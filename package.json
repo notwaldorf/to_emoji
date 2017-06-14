@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/notwaldorf/to_emoji#readme",
   "dependencies": {
-    "moji-translate": "^1.0.0",
+    "moji-translate": "^1.0.7",
     "twit": "^2.2.5"
   },
   "engines": {
