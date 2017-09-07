@@ -1,3 +1,4 @@
+require ('newrelic');
 const translate = require('moji-translate');
 const Twit = require('twit');
 var config;
