@@ -3,10 +3,22 @@ const translate = require('moji-translate');
 const Twit = require('twit');
 var config;
 
-var http = require('http');
-  http.createServer().listen(process.env.PORT || 5000, function() {
-  console.log('🐳  Started server' );
+var http = require("http");
+var server = http.createServer(function(request, response) {
+  response.writeHead(200, {"Content-Type": "text/html"});
+  response.write("<html>");
+  response.write("<head>");
+  response.write("<title>Emoji bot</title>");
+  response.write("<style>p {font-family:sans-serif;font-size: 20px;line-height:2;padding:40px;</style>");
+  response.write("</head>");
+  response.write("<body>");
+  response.write("<p>I am an emoji bot!<br>Talk to me at https://twitter.com/to_emoji</p>");
+  response.write("</body>");
+  response.write("</html>");
+  response.end();
 });
+server.listen(process.env.PORT || 5000);
+console.log('🐳 Started server' );
 
 try {
   config = require('./.env');
